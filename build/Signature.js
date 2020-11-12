@@ -22,12 +22,12 @@ class Signature {
   createSignature(privateKey, httpMethod, path, parameters) {
     var provider = new _web.default();
     provider.eth.accounts.privateKeyToAccount(privateKey);
-    var signatureBase = httpMethod + path;
+    var signatureBase = httpMethod;
 
     if (httpMethod === "GET") {
-      signatureBase = signatureBase + encodeURIComponent(parameters);
+      signatureBase = signatureBase + encodeURIComponent(path + parameters);
     } else {
-      signatureBase = signatureBase + JSON.stringify(parameters);
+      signatureBase = signatureBase + path + JSON.stringify(parameters);
     }
 
     return provider.eth.accounts.sign(signatureBase, privateKey);
