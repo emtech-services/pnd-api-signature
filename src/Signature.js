@@ -14,11 +14,11 @@ export default class Signature {
     createSignature(privateKey, httpMethod, path, parameters) {
         const provider = new Web3();
         provider.eth.accounts.privateKeyToAccount(privateKey);
-        let signatureBase = httpMethod + path;
+        let signatureBase = httpMethod;
         if (httpMethod === "GET") {
-            signatureBase = signatureBase + encodeURIComponent(parameters);
+            signatureBase = signatureBase + encodeURIComponent(path + parameters);
         } else {
-            signatureBase = signatureBase + JSON.stringify(parameters);
+            signatureBase = signatureBase + path + JSON.stringify(parameters);
         }
         return provider.eth.accounts.sign(signatureBase, privateKey);
     };
