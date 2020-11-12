@@ -36,12 +36,13 @@ export default class Signature {
         const provider = new Web3();
         let signature = "";
         if (req.method === "GET") {
-            signature = req.method + req.url;
+            const decodedUrl = decodeURIComponent(req.url)
+            signature = req.method + encodeURIComponent(decodedUrl);
         } else {
             signature = req.method + req.route.path + JSON.stringify(req.body);
         }
         const recovered = provider.eth.accounts.recover(signature, req.headers['x-user-signature']);
-        console.log("recoverAddres");
+        return recovered;
     };
 
 }
