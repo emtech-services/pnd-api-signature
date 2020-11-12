@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Signature = void 0;
+exports.default = void 0;
 
 var _web = _interopRequireDefault(require("web3"));
 
@@ -59,4 +59,4 @@ class Signature {
 
 }
 
-exports.Signature = Signature;
+exports.default = Signature;

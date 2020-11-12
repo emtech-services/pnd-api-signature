@@ -1,6 +1,6 @@
 import Web3 from "web3";
 
-export class Signature {
+export default class Signature {
 
     /**
     * Create signature that need to be included in PND services requests. The signature should be added in X-User-Signature header.
